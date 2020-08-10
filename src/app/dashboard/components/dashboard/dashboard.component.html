@@ -1,0 +1,42 @@
+<mat-grid-list cols="3" rowHeight="3:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-subtitle>Total cases</mat-card-subtitle>
+      <mat-card-title>{{ totalCases | number }}</mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-subtitle>Total deaths</mat-card-subtitle>
+      <mat-card-title>{{ totalDeaths | number }}</mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-subtitle>Total recovered</mat-card-subtitle>
+      <mat-card-title>{{ totalRecovered | number }}</mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="1" rowHeight="1:1" class="text-center">
+  <mat-form-field appearance="fill">
+    <mat-label>Select a country</mat-label>
+    <mat-select (valueChange)="onSelectCountry($event)">
+      <mat-option *ngFor="let country of countries" [value]="country.Country">
+        {{ country.Country }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-grid-list>
+
+<mat-grid-list cols="1" rowHeight="1:1">
+  <mat-card style="min-height: 300px;">
+    <ag-charts-angular
+      *ngIf="data"
+      style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"
+      [options]="graphData"
+    >
+    </ag-charts-angular>
+  </mat-card>
+</mat-grid-list>
